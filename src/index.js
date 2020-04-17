@@ -3,10 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-
+import {BrowserRouter as Router} from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+  document.addEventListener("DOMContentLoaded", () => {
+  			window.setTimeout(function() {
+				document.body.className = document.body.className.replace("is-preload","")
+			}, 100);
+		});
 ReactDOM.render(
   <React.StrictMode>
+  <Router>
     <App />
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );

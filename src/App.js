@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React,{Suspense,lazy} from 'react';
+import {Route} from 'react-router-dom';
+import Switch from 'react-router-transition-switch'
+import Fader from 'react-fader'
+ const Header = lazy(() => import('./pages/Header'));
+ const Skills = lazy(() => import('./pages/Skills'));
+ const About = lazy(() => import('./pages/About'));
+ const Contact = lazy(() => import('./pages/Contact'));
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return ( <>
+          <div id="wrapper">
+          <Suspense fallback={<div>Загрузка...</div>}>
+       <Switch 
+       component={Fader}>
+      <Route exact path="/" component={Header} />
+      <Route path="/skills" component={Skills} />
+      <Route path="/about" component={About} />
+      <Route path="/contact" component={Contact} />
+          </Switch>
+          </Suspense>
+</div>
+</>
+ )
 }
-
 export default App;
